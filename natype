@@ -10,6 +10,6 @@ declare -A DICT=( ["A"]="alpha" ["B"]="bravo" ["C"]="charlie" \
 for word in $(printf '%s\n' ${DICT[@]}|tac); do
         score=${score:=0}; letter=$(head -c1 <<< ${word^^})
         clear; read -p "$letter: " answer
-        [[ "${DICT[$letter],,}" == "${answer,,}" ]] && { let score++; }
+        [[ "${DICT[$letter]}" == "${answer,,}" ]] && { let score++; }
         [[ $letter == "Z" ]] && { clear; echo "SCORE: ${score}/${#DICT[@]}"; }
 done
