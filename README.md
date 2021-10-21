@@ -1,2 +1,2 @@
 # natype
-Learn the NATO phonetic alphabet with this command line game
+Test your NATO phonetic alphabet knowledge with this command line game
