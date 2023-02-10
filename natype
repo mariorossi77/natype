@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-declare -A DICT=( ["A"]="alpha" ["B"]="bravo" ["C"]="charlie" \
-        ["D"]="delta" ["E"]="echo" ["F"]="foxtrot" ["G"]="golf" ["H"]="hotel" \
-        ["I"]="india" ["J"]="juliet" ["K"]="kilo" ["L"]="lima" ["M"]="mike" \
-        ["N"]="november" ["O"]="oscar" ["P"]="papa" ["Q"]="quebec" ["R"]="romeo" \
-        ["S"]="sierra" ["T"]="tango" ["U"]="uniform" ["V"]="victor" ["W"]="whiskey" \
-        ["X"]="x-ray" ["Y"]="yankee" ["Z"]="zulu" )
+declare -a DICT=( "alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" \
+        "hotel" "india" "juliet" "kilo" "lima" "mike" "november" "oscar" \
+        "papa" "quebec" "romeo" "sierra" "tango" "uniform" "victor" "whiskey" \
+        "x-ray" "yankee" "zulu" )
 
-for word in $(printf '%s\n' ${DICT[@]}|tac); do
-        score=${score:=0}; letter=$(head -c1 <<< ${word^^})
-        clear; read -p "$letter: " answer
-        [[ "${DICT[$letter]}" == "${answer,,}" ]] && { let score++; }
-        [[ $letter == "Z" ]] && { clear; echo "SCORE: ${score}/${#DICT[@]}"; }
+for word in ${DICT[@]}; do
+        score=${score:=0}
+        letter=$(head -c1 <<< ${word^^})
+        read -p "$letter: " answer
+        [[ $word == "${answer,,}" ]] && let score++
+        clear
 done
+echo "SCORE: ${score}/${#DICT[@]}"
