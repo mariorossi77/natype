@@ -7,9 +7,7 @@ declare -a DICT=( "alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" \
 
 for word in ${DICT[@]}; do
         score=${score:=0}
-        letter=$(head -c1 <<< ${word^^})
-        read -p "$letter: " answer
+        read -p "$(head -c1 <<< ${word^^}): " answer
         [[ $word == "${answer,,}" ]] && let score++
-        clear
 done
 echo "SCORE: ${score}/${#DICT[@]}"
